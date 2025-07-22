@@ -1,0 +1,162 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--secondary-color);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+
+  img {
+    max-width: 150px;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    color: var(--primary-color);
+    font-size: 24px;
+  }
+}
+
+main {
+  width: 100%;
+  max-width: 500px;
+}
+
+.card {
+  background-color: var(--background-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--light-text-color);
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+}
+
+button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 15px;
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: var(--light-text-color);
+
+  .date {
+    font-size: 0.9em;
+  }
+
+  .currency-pair {
+    font-weight: bold;
+    color: var(--text-color);
+  }
+}
+
+.result-value {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--primary-color);
+  background-color: #e3f2fd;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.last-30-days {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
+  font-weight: bold;
+  color: var(--text-color);
+
+  .toggle-icon {
+    font-size: 24px;
+    line-height: 1;
+    color: var(--primary-color);
+  }
+}
+
+.daily-rates .day-card:not(:last-child) {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.day-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.day-values {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+
+  span {
+    color: var(--light-text-color);
+  }
+
+  .close-diff {
+    grid-column: span 2;
+  }
+}
+
+.positive {
+  color: var(--positive-color);
+}
+
+.negative {
+  color: var(--negative-color);
+}
+
+.arrow {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.footer {
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--primary-color);
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
