@@ -8,6 +8,7 @@
           type="text"
           [(ngModel)]="currencyCode"
           (keyup.enter)="getExchangeRate()"
+          oninput="this.value = this.value.toUpperCase()"
         />
       </mat-form-field>
       <button class="exchange-rate__button" (click)="getExchangeRate()">EXCHANGE RESULT</button>
