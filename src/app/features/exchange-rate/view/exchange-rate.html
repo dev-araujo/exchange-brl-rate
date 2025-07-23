@@ -1,94 +1,27 @@
-<div class="container">
-  <header class="header">
-    <img src="/logo.svg" alt="Action Labs Logo" />
-    <h1>BRL EXCHANGE RATE</h1>
-  </header>
-
+<div class="exchange-rate">
   <main>
     <div class="card">
-      <div class="form-group">
-        <label for="currency-code">Enter the currency code</label>
+      <mat-form-field>
+        <mat-label>Enter the currency code</mat-label>
         <input
-          id="currency-code"
+          matInput
           type="text"
           [(ngModel)]="currencyCode"
           (keyup.enter)="getExchangeRate()"
-          placeholder="USD"
         />
-      </div>
+      </mat-form-field>
       <button (click)="getExchangeRate()">EXCHANGE RESULT</button>
     </div>
 
-    @if (exchangeRate()) {
-    <div class="card result">
-      <div class="result-header">
-        <span>
-          Exchange rate now<br />
-          <span class="date">{{
-            exchangeRate()?.lastUpdatedAt | date : "dd/MM/yyyy - HH:mm"
-          }}</span>
-        </span>
-        <span class="currency-pair"
-          >{{ exchangeRate()?.fromSymbol }}/{{ exchangeRate()?.toSymbol }}</span
-        >
-      </div>
-      <div class="result-value">
-        <h2>
-          {{
-            exchangeRate()?.exchangeRate | currency : "BRL" : "symbol" : "1.4-4"
-          }}
-        </h2>
-      </div>
-      <div class="last-30-days" (click)="getDailyRates()">
-        <span>LAST 30 DAYS</span>
-        <span class="toggle-icon">{{ showDaily() ? "-" : "+" }}</span>
-      </div>
-    </div>
-    } @if (showDaily()) {
-    <div class="card daily-rates">
-      @for (rate of dailyRates(); track rate.date) {
-      <div class="day-card">
-        <div class="day-header">{{ rate.date | date : "dd/MM/yyyy" }}</div>
-        <div class="day-values">
-          <div>
-            <span>OPEN:</span>
-            {{ rate.open | currency : "BRL" : "symbol" : "1.4-4" }}
-          </div>
-          <div>
-            <span>HIGH:</span>
-            {{ rate.high | currency : "BRL" : "symbol" : "1.4-4" }}
-          </div>
-          <div>
-            <span>CLOSE:</span>
-            {{ rate.close | currency : "BRL" : "symbol" : "1.4-4" }}
-          </div>
-          <div>
-            <span>LOW:</span>
-            {{ rate.low | currency : "BRL" : "symbol" : "1.4-4" }}
-          </div>
-          @if(rate['diff'] !== undefined) {
-          <div
-            class="close-diff"
-            [ngClass]="{
-              positive: rate['diff'] > 0,
-              negative: rate['diff'] < 0
-            }"
-          >
-            <span>CLOSE DIFF (%):</span>
-            {{ rate["diff"] | number : "1.2-2" }}%
-            <span class="arrow">
-              {{ rate["diff"] | rateChangeArrow }}
-            </span>
-          </div>
-          }
-        </div>
-      </div>
-      }
-    </div>
+    <app-exchange-rate-result
+      [exchangeRate]="exchangeRate()"
+      [showDaily]="showDaily()"
+      (toggleDailyRates)="getDailyRates()"
+    ></app-exchange-rate-result>
+
+    
+    @if (showDaily()) {
+      <app-daily-rates [dailyRates]="dailyRates()"></app-daily-rates>
     }
   </main>
-
-  <footer class="footer">
-    <span>Copyright 2022 - Action Labs</span>
-  </footer>
 </div>

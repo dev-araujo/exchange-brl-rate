@@ -1,35 +1,38 @@
 import { Component, inject, signal } from '@angular/core';
-import { CommonModule, CurrencyPipe, DatePipe, DecimalPipe } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import {
-  DailyExchangeRate,
-  ExchangeRate,
-} from '../models/exchange-rate.model';
+  CommonModule,
+  CurrencyPipe,
+  DatePipe,
+  DecimalPipe,
+  UpperCasePipe,
+} from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { DailyExchangeRate, ExchangeRate } from '../models/exchange-rate.model';
 import { RateChangeArrowPipe } from '../../../shared/pipes/rate-change-arrow.pipe';
 import { ExchangeRateService } from '../services/exchange-rate.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ExchangeRateResultComponent } from '../components/exchange-rate-result/exchange-rate-result.component';
+import { DailyRatesComponent } from '../components/daily-rates/daily-rates.component';
+
+const MATERIAL_DESIGN = [MatFormFieldModule, MatInputModule];
+const COMPONENTS = [ExchangeRateResultComponent, DailyRatesComponent];
 
 @Component({
   selector: 'app-exchange-rate-list',
-  standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    CurrencyPipe,
-    DatePipe,
-    DecimalPipe,
-    RateChangeArrowPipe, 
-  ],
+  imports: [CommonModule, FormsModule, ...MATERIAL_DESIGN, ...COMPONENTS],
   templateUrl: './exchange-rate.html',
   styleUrls: ['./exchange-rate.scss'],
 })
 export class ExchangeRateComponent {
-  currencyCode = signal('USD');
+  currencyCode = signal('');
   exchangeRate = signal<ExchangeRate | null>(null);
   dailyRates = signal<DailyExchangeRate[]>([]);
   showDaily = signal(false);
-  private readonly TO_SYMBOL_DEFAULT = 'BRL'
+  private readonly TO_SYMBOL_DEFAULT = 'BRL';
 
-  private exchangeRateService: ExchangeRateService = inject(ExchangeRateService)
+  private exchangeRateService: ExchangeRateService =
+    inject(ExchangeRateService);
 
   getExchangeRate(): void {
     this.exchangeRateService
