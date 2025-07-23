@@ -32,15 +32,15 @@ export class ExchangeRateComponent implements OnDestroy {
   showDaily = signal(false);
 
   private readonly TO_SYMBOL_DEFAULT = 'BRL';
-  private destroy$ = new Subject<void>();
+  private _destroy$ = new Subject<void>();
 
-  private exchangeRateService: ExchangeRateService =
+  private _exchangeRateService: ExchangeRateService =
     inject(ExchangeRateService);
 
   getExchangeRate(): void {
-    this.exchangeRateService
+    this._exchangeRateService
       .getCurrentExchangeRate(this.currencyCode(), this.TO_SYMBOL_DEFAULT)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this._destroy$))
       .subscribe({
         next: (data) => {
           this.exchangeRate.set(data);
@@ -57,9 +57,9 @@ export class ExchangeRateComponent implements OnDestroy {
       return;
     }
 
-    this.exchangeRateService
+    this._exchangeRateService
       .getDailyExchangeRate(this.currencyCode(), this.TO_SYMBOL_DEFAULT)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this._destroy$))
       .subscribe({
         next: (processedRates) => {
           this.dailyRates.set(processedRates);
@@ -70,7 +70,7 @@ export class ExchangeRateComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 }
