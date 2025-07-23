@@ -1,59 +1,90 @@
-# ExchangeBrlRate
+<img src="https://img.shields.io/static/v1?label=license&message=MIT&color=5965E0&labelColor=121214" alt="License">
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.1.
+<img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" /> <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
+<img src="https://img.shields.io/badge/Angular_Material-f8f9fa?style=for-the-badge&logo=angular&logoColor=DD0031" alt="Angular Material" /> <img src="https://img.shields.io/badge/rxjs-%23B7178C.svg?style=for-the-badge&logo=rxjs&logoColor=white" alt="RxJS" /> <img src="https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white"/>
 
-## Development server
+# BRL Exchange Rate
 
-To start a local development server, run:
+O **BRL Exchange Rate** é uma aplicação para consulta de cotações de moedas em relação ao Real (BRL), utilizando uma API externa para obter os dados. Este projeto foi desenvolvido como um teste técnico.
 
-```bash
-ng serve
-```
+## Resultado ✨
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Você pode conferir a aplicação facilmente no seguinte link:**
+  - **[VERCEL](https://action-labs-exchange.vercel.app/)**
 
-## Code scaffolding
+![](./assets/screenshot.png)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## Stack 🚀
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+**Frontend**
 
-```bash
-ng generate --help
-```
+- **Angular (v20)**
+- **Angular Material**
+- **RxJS**
+- **SCSS** 
+- **Signals**
 
-## Building
 
-To build the project run:
 
-```bash
-ng build
-```
+## Rodando Localmente ⚡️
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Existem duas maneiras de rodar o projeto: **manualmente** ou com **Docker**.
 
-## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
-```bash
-ng test
-```
+### Manualmente ⚒️
 
-## Running end-to-end tests
+1.  Clone o repositório e instale as dependências:
+    ```bash
+    git clone https://github.com/dev-araujo/exchange-brl-rate.git
+    ```
 
-For end-to-end (e2e) testing, run:
+2. Instale as dependências: 
+    
+    ```bash
+    npm install
+    ```
 
-```bash
-ng e2e
-```
+3.  Execute o servidor de desenvolvimento:
+    ```bash
+    ng serve
+    ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+⭐ A aplicação estará disponível em `http://localhost:4200`.
 
-## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Com Docker  🐋
+
+#### 📋 Pré-requisitos
+
+Certifique-se de que você tem o [Docker](https://www.docker.com/get-started) e o [Docker Compose](https://docs.docker.com/compose/install/) instalados.
+
+1.  Clone o repositório:
+    ```bash
+    git clone https://github.com/dev-araujo/exchange-brl-rate.git
+    ```
+
+2.  Execute o Docker Compose para construir a imagem e iniciar o contêiner. O comando abaixo usa a configuração de desenvolvimento:
+
+    ```bash
+    docker-compose up -d
+    ```
+    ou
+
+    ```bash
+    docker compose up -d
+    ```
+   
+
+⭐ A aplicação estará disponível em `http://localhost:4201`. 
+
+---
+
+
+#### Autor 👷
+
+<img src="https://avatars.githubusercontent.com/u/97068163?v=4" width=120 />
+
+[Adriano P Araujo](https://www.linkedin.com/in/araujocode/)
