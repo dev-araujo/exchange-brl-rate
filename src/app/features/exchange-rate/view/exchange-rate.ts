@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, OnDestroy, inject, signal } from '@angular/core';
 import {
   CommonModule,
   CurrencyPipe,
@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ExchangeRateResultComponent } from '../components/exchange-rate-result/exchange-rate-result.component';
 import { DailyRatesComponent } from '../components/daily-rates/daily-rates.component';
+import { Subject, takeUntil } from 'rxjs';
 
 const MATERIAL_DESIGN = [MatFormFieldModule, MatInputModule];
 const COMPONENTS = [ExchangeRateResultComponent, DailyRatesComponent];
@@ -24,12 +25,14 @@ const COMPONENTS = [ExchangeRateResultComponent, DailyRatesComponent];
   templateUrl: './exchange-rate.html',
   styleUrls: ['./exchange-rate.scss'],
 })
-export class ExchangeRateComponent {
+export class ExchangeRateComponent implements OnDestroy {
   currencyCode = signal('');
   exchangeRate = signal<ExchangeRate | null>(null);
   dailyRates = signal<DailyExchangeRate[]>([]);
   showDaily = signal(false);
+
   private readonly TO_SYMBOL_DEFAULT = 'BRL';
+  private destroy$ = new Subject<void>();
 
   private exchangeRateService: ExchangeRateService =
     inject(ExchangeRateService);
@@ -37,10 +40,14 @@ export class ExchangeRateComponent {
   getExchangeRate(): void {
     this.exchangeRateService
       .getCurrentExchangeRate(this.currencyCode(), this.TO_SYMBOL_DEFAULT)
-      .subscribe((data) => {
-        this.exchangeRate.set(data);
-        this.showDaily.set(false);
-        this.dailyRates.set([]);
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (data) => {
+          this.exchangeRate.set(data);
+          this.showDaily.set(false);
+          this.dailyRates.set([]);
+        },
+        error: (err) => console.error('Error fetching exchange rate', err),
       });
   }
 
@@ -52,9 +59,18 @@ export class ExchangeRateComponent {
 
     this.exchangeRateService
       .getDailyExchangeRate(this.currencyCode(), this.TO_SYMBOL_DEFAULT)
-      .subscribe((processedRates) => {
-        this.dailyRates.set(processedRates);
-        this.showDaily.set(true);
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (processedRates) => {
+          this.dailyRates.set(processedRates);
+          this.showDaily.set(true);
+        },
+        error: (err) => console.error('Error fetching daily rates', err),
       });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

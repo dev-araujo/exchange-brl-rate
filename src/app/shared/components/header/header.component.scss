@@ -1,8 +1,14 @@
+@use '../../../../styles/variables' as v;
+
 :host {
   display: block; 
   max-width: 500px;
   width: 100%;
   margin: 0 auto 20px; 
+
+  @media (min-width: v.$breakpoint-tablet) {
+    max-width: 800px;
+  }
 }
 
 .header-card {
@@ -13,22 +19,22 @@
  
   box-sizing: border-box;
 
-  img {
+  &__logo {
     max-width: 150px;
     display: block; 
     margin: 0 auto; 
   }
 
-  .title {
+  &__title {
     border-top: 2px solid var(--border-color); 
     padding-top: 32px; 
     margin-top:16px;
-  }
 
-  h1 {
-    color: var(--primary-color);
-    font-size: 24px; 
-    font-weight: 700;
-    margin: 0; 
+    h1 {
+      color: var(--primary-color);
+      font-size: 24px; 
+      font-weight: 700;
+      margin: 0; 
+    }
   }
 }

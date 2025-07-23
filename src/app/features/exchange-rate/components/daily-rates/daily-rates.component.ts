@@ -2,19 +2,20 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { DailyExchangeRate } from '../../models/exchange-rate.model';
 import { CommonModule } from '@angular/common';
 import { RateChangeArrowPipe } from '../../../../shared/pipes/rate-change-arrow.pipe';
+import { MinusPlusSymbolPipe } from '../../../../shared/pipes/minus-plus-symbol.pipe';
 
-const COMPONENTS = [RateChangeArrowPipe]
+const PIPES = [RateChangeArrowPipe, MinusPlusSymbolPipe ]
 
 @Component({
   selector: 'app-daily-rates',
   standalone: true,
-  imports: [CommonModule, ...COMPONENTS], 
+  imports: [CommonModule, ...PIPES], 
   template: `
 @if (dailyRates.length > 0) {
   @for (rate of dailyRates; track rate.date) {
   <div class="day-card">
-    <div class="day-header">{{ rate.date | date : "dd/MM/yyyy" }}</div>
-    <div class="day-values">
+    <div class="day-card__header">{{ rate.date | date : "dd/MM/yyyy" }}</div>
+    <div class="day-card__values">
       <div>
         <span>OPEN:</span>
         <b>{{ rate.open | currency : "BRL" : "symbol" : "1.4-4" }}</b>
@@ -24,27 +25,27 @@ const COMPONENTS = [RateChangeArrowPipe]
         <b>{{ rate.high | currency : "BRL" : "symbol" : "1.4-4" }}</b>
       </div>
       <div>
-        <span class="margin-close">CLOSE:</span>
+        <span class="day-card__margin-close">CLOSE:</span>
         <b>{{ rate.close | currency : "BRL" : "symbol" : "1.4-4" }}</b>
       </div>
       <div>
-        <span class="low-margin">LOW:</span>
+        <span class="day-card__low-margin">LOW:</span>
         <b>{{ rate.low | currency : "BRL" : "symbol" : "1.4-4" }}</b>
       </div>
       @if(rate['diff'] !== undefined) {
       <div
-        class="close-diff"
+        class="day-card__close-diff"
         [ngClass]="{
-          positive: rate['diff'] > 0,
-          negative: rate['diff'] < 0
+          'day-card__close-diff--positive': rate['diff'] > 0,
+          'day-card__close-diff--negative': rate['diff'] < 0
         }"
       >
         <span>CLOSE DIFF (%):</span>
-        <div class="diff-value">
-          {{ rate["diff"] > 0 ? "+" : "" }}
-          {{ rate["diff"] | number : "1.2-2" }}%
+        <div class="day-card__diff-value">
+          {{ rate["diff"] | minusPlusSymbol }}
+          {{ rate["diff"] | number : "1.2-2" }} %
           <img
-            class="rate-arrow-icon"
+            class="day-card__rate-arrow-icon"
             [src]="rate['diff'] | rateChangeArrow"
             alt="Indicador de variação da cotação"
           />
