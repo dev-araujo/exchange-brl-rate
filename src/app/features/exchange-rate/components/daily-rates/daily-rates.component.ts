@@ -2,13 +2,14 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { DailyExchangeRate } from '../../models/exchange-rate.model';
 import { CommonModule } from '@angular/common';
 import { RateChangeArrowPipe } from '../../../../shared/pipes/rate-change-arrow.pipe';
+import { MinusPlusSymbolPipe } from '../../../../shared/pipes/minus-plus-symbol.pipe';
 
-const COMPONENTS = [RateChangeArrowPipe]
+const PIPES = [RateChangeArrowPipe, MinusPlusSymbolPipe ]
 
 @Component({
   selector: 'app-daily-rates',
   standalone: true,
-  imports: [CommonModule, ...COMPONENTS], 
+  imports: [CommonModule, ...PIPES], 
   template: `
 @if (dailyRates.length > 0) {
   @for (rate of dailyRates; track rate.date) {
@@ -41,7 +42,7 @@ const COMPONENTS = [RateChangeArrowPipe]
       >
         <span>CLOSE DIFF (%):</span>
         <div class="day-card__diff-value">
-          {{ rate["diff"] > 0 ? "+" : "" }}
+          {{ rate["diff"] | minusPlusSymbol }}
           {{ rate["diff"] | number : "1.2-2" }} %
           <img
             class="day-card__rate-arrow-icon"
