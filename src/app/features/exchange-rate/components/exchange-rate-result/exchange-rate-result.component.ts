@@ -8,8 +8,9 @@ import {
 import { CommonModule } from '@angular/common';
 import { ExchangeRate } from '../../models/exchange-rate.model';
 import { CurrencyPipe, DatePipe, UpperCasePipe } from '@angular/common';
+import { MoreLessPipe } from '../../../../shared/pipes/more-less.pipe';
 
-const PIPES = [CurrencyPipe, DatePipe, UpperCasePipe];
+const PIPES = [CurrencyPipe, DatePipe, UpperCasePipe, MoreLessPipe];
 
 @Component({
   selector: 'app-exchange-rate-result',
@@ -39,9 +40,9 @@ const PIPES = [CurrencyPipe, DatePipe, UpperCasePipe];
           }}
         </h2>
       </div>
-      <div class="last-30-days" (click)="onToggleDailyRates()">
+     <div class="last-30-days" (click)="onToggleDailyRates()">
         <span>LAST 30 DAYS</span>
-        <span class="toggle-icon">{{ showDaily ? '-' : '+' }}</span>
+        <img class="toggle-details" [src]="showDaily | moreLess" alt="Toggle Details Icon">
       </div>
     </div>
     }`,
