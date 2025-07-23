@@ -1,3 +1,5 @@
+@use '../../../../styles/variables' as v;
+
 .exchange-rate {
   display: flex;
   flex-direction: column;
@@ -8,6 +10,10 @@
   &__main {
     width: 100%;
     max-width: 500px;
+
+    @media (min-width: v.$breakpoint-tablet) {
+      max-width: 800px;
+    }
   }
 
   &__card {
