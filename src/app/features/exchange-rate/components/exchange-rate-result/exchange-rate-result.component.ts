@@ -17,32 +17,32 @@ const PIPES = [CurrencyPipe, DatePipe, UpperCasePipe, MoreLessPipe];
   imports: [CommonModule, ...PIPES],
   template: `@if (exchangeRate) {
     <div class="card result">
-      <div class="result-header">
-        <article class="result-header-sub">
+      <div class="result__header">
+        <article class="result__header-sub">
           Exchange rate now
           
-          <p class="date">{{
+          <p class="result__date">{{
             exchangeRate.lastUpdatedAt | date : 'dd/MM/yyyy - HH:mm'
           }}
           </p>
         </article>
 
-        <span class="currency-pair"
+        <span class="result__currency-pair"
           >{{ exchangeRate.fromSymbol | uppercase }}/{{
             exchangeRate.toSymbol | uppercase
           }}</span
         >
       </div>
-      <div class="result-value">
+      <div class="result__value">
         <h2>
           {{
             exchangeRate.exchangeRate | currency : 'BRL' : 'symbol' : '1.4-4'
           }}
         </h2>
       </div>
-     <div class="last-30-days" (click)="onToggleDailyRates()">
+     <div class="result__last-30-days" (click)="onToggleDailyRates()">
         <span>LAST 30 DAYS</span>
-        <img class="toggle-details" [src]="showDaily | moreLess" alt="Toggle Details Icon">
+        <img class="result__toggle-details" [src]="showDaily | moreLess" alt="Toggle Details Icon">
       </div>
     </div>
     }`,

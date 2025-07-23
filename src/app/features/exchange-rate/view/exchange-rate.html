@@ -1,6 +1,6 @@
 <div class="exchange-rate">
-  <main>
-    <div class="card">
+  <main class="exchange-rate__main">
+    <div class="exchange-rate__card">
       <mat-form-field>
         <mat-label>Enter the currency code</mat-label>
         <input
@@ -10,7 +10,7 @@
           (keyup.enter)="getExchangeRate()"
         />
       </mat-form-field>
-      <button (click)="getExchangeRate()">EXCHANGE RESULT</button>
+      <button class="exchange-rate__button" (click)="getExchangeRate()">EXCHANGE RESULT</button>
     </div>
 
     <app-exchange-rate-result

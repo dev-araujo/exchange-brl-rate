@@ -14,54 +14,55 @@
   margin-top: 2rem;
   border-top: 1px solid var(--light-border-color);
   padding-top: 30px;
-}
 
-.result-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  color: var(--text-color);
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    color: var(--text-color);
+  }
 
-  .result-header-sub {
+  &__header-sub {
     font-weight: 600;
     font-size: 18px;
   }
-  .date {
+
+  &__date {
     font-size: 14px;
     font-weight: 400;
     color: var(--light-text-color);
   }
 
-  .currency-pair {
+  &__currency-pair {
     font-weight: bold;
     color: var(--primary-color);
     font-size: 24px;
   }
-}
 
-.result-value {
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  color: var(--primary-color);
-  background-color: var(--light-primary-color);
-  padding: 20px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-}
+  &__value {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary-color);
+    background-color: var(--light-primary-color);
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
 
-.last-30-days {
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-  border-top: 2px solid var(--primary-color);
-  padding-top: 20px;
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--text-color);
+  &__last-30-days {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    border-top: 2px solid var(--primary-color);
+    padding-top: 20px;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--text-color);
+  }
 
-  .toggle-details {
+  &__toggle-details {
     font-size: 24px;
     line-height: 1;
     color: var(--primary-color);

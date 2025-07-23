@@ -3,49 +3,37 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  
-  box-sizing: border-box;
-}
-
-main {
-  width: 100%;
-  max-width: 500px;
-}
-
-.card {
-  background-color: var(--background-color);
-  margin-bottom: 20px;
-  width: 100%;
   box-sizing: border-box;
 
-  .mat-mdc-form-field {
+  &__main {
     width: 100%;
+    max-width: 500px;
+  }
+
+  &__card {
+    background-color: var(--background-color);
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+
+    .mat-mdc-form-field {
+      width: 100%;
+    }
+  }
+
+  &__button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 100px;
   }
 }
-
-.form-group {
-  margin-bottom: 20px;
-
-  label {
-    display: block;
-    margin-bottom: 5px;
-    color: var(--light-text-color);
-  }
-}
-
-button {
-  background-color: var(--primary-color);
-  color: #fff;
-  border: none;
-  padding: 15px;
-  width: 100%;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 100px;
-}
-
 
 .daily-rates .day-card:not(:last-child) {
   border-bottom: 1px solid var(--border-color);
@@ -90,4 +78,10 @@ button {
   height: 16px;
   margin-left: 5px;
   vertical-align: middle;
+}
+
+.toggle-details {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
 }

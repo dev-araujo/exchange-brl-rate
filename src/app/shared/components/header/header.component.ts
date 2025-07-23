@@ -10,8 +10,8 @@ import {
   selector: 'app-header',
   imports: [],
   template: ` <header class="header-card">
-    <img (click)="handleEvent()" src="/logo.svg" alt="Action Labs Logo" />
-    <div class="title">
+    <img class="header-card__logo" (click)="handleEvent()" src="/logo.svg" alt="Action Labs Logo" />
+    <div class="header-card__title">
       <h1>{{ title }}</h1>
     </div>
   </header>`,
