@@ -38,7 +38,7 @@ Existem duas maneiras de rodar o projeto: **manualmente** ou com **Docker**.
 
 1.  Clone o repositório e instale as dependências:
     ```bash
-    git clone https://github.com/dev-araujo/exchange-brl-rate.git
+    git clone https://github.com/dev-araujo/exchange-brl-rate__test.git
     ```
 
 2. Instale as dependências: 
@@ -63,7 +63,7 @@ Certifique-se de que você tem o [Docker](https://www.docker.com/get-started) e 
 
 1.  Clone o repositório:
     ```bash
-    git clone https://github.com/dev-araujo/exchange-brl-rate.git
+    git clone https://github.com/dev-araujo/exchange-brl-rate__test.git
     ```
 
 2.  Execute o Docker Compose para construir a imagem e iniciar o contêiner. O comando abaixo usa a configuração de desenvolvimento:
